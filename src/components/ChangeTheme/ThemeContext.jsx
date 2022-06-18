@@ -13,7 +13,7 @@ const getInitialTheme = ()=>{
 
 export const ThemeContext = React.createContext();
 
-export const ThemeProvider = ({ children}) =>{
+export const ThemeProvider = ({children}) =>{
     const [theme,setTheme] = useState(getInitialTheme);
     const rawSetTheme = (rawTheme)=>{
         

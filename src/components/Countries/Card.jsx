@@ -8,7 +8,7 @@ export default function Card(props){
     let isLoading = useSelector(state => state.loader.value);
     let detailTitle = props.cca3;
         return(
-        <Link to={{pathname: "/"+detailTitle}}>
+        <Link to={"country/"+detailTitle}>
         <div className=' mt-10 shadow-Custom rounded-md cursor-pointer  bg-white dark:bg-DarkBlue' ref={props.reference} >
             <div className=' h-48 w-full rounded-t shadow-md justify-center flex items-center sm:h-52 '>
             {

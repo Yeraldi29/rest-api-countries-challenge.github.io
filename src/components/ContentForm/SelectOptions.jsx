@@ -1,13 +1,12 @@
-import React, { useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
+import useFetchData from '../Hooks/useFetchData';
 import {useDispatch} from 'react-redux';
 import Select, {components} from 'react-select';
 import {Region} from './Features/FilterRegions';
 import {country} from './Features/SearchCountry';
 import {itemsIndex} from './Features/itemsFilter';
-import {setLoader} from './Features/Loader';
 import {ThemeContext} from '../ChangeTheme/ThemeContext';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import axios from 'axios';
 import _ from 'lodash';
 
 const options = [
@@ -21,7 +20,8 @@ const options = [
 
 export default function SelectOptions(){
     const {theme} = useContext(ThemeContext);
-
+    const [posts, setKeyword] = useFetchData('region/');
+    
     const DropdownIndicator= (props)=>{
         return(
             <components.DropdownIndicator {...props}>
@@ -83,33 +83,20 @@ export default function SelectOptions(){
             caretColor:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)'
         })
     }
+
     const dispatch = useDispatch();
 
-        function handleChange(option) {
-        if(option.value === "All"){
-          dispatch(setLoader(true));
-          axios.get("https://restcountries.com/v3.1/all" ).then( (response)=>{
-              dispatch(country([]));
-            dispatch(Region(response.data));
-            dispatch(itemsIndex());
-            dispatch(setLoader(false));
-          }).catch((err)=>{console.log(err);}) 
-        }else{
-          dispatch(setLoader(true));
-          axios.get("https://restcountries.com/v3.1/region/" + _.lowerFirst(option.value)).then( 
-              (response)=>{
-            dispatch(country([]));
-            dispatch(Region(response.data));
-            dispatch(itemsIndex());
-            dispatch(setLoader(false));
-          }).catch((err)=>{console.log(err);}) 
-         }       
-        }
-            
+     function handleChange(e) { 
+        setKeyword(_.lowerFirst(e.value));
+        console.log(e.value);
+         dispatch(country([])); 
+         dispatch(Region(posts))
+         dispatch(itemsIndex());
+     }
 
     return (
         <Select
-        onChange={option => handleChange(option)}
+        onChange={(e) => handleChange(e)}
         options={options} 
         className=" mr-32 mt-8 sm:m-0 sm:w-52" 
         styles={customStyles}

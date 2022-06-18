@@ -13,11 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ThemeProvider>
     <Provider store={store} >
+    <Header />
       <Router>
-     <Header />
        <Routes>
        <Route exact path="/" element={<Home />} />
-        <Route  path=":detailTitle" element={<DetailCountry />} />
+        <Route  path="country" > 
+         <Route path=":detailTitle" element={<DetailCountry />}/>
+        </Route>
        </Routes>
      </Router>
     </Provider>

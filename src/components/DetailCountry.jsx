@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, Outlet} from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Loader from './Loader';
@@ -82,11 +82,11 @@ export default function Detail(){
                     {
                     country.borders !== undefined && country.borders.map((item, index) =>{
                         return(
-                            <Link to={{pathname: "/"+item}} >
+                            <a href={"/country/"+item} >
                                <div className="flex bg-white dark:bg-DarkBlue mr-2 w-28 h-6 items-center justify-center rounded-sm shadow-Custom cursor-pointer hover:opacity-50 sm:w-24 " key={index} >
                                    <span className=' text-xs font-light text-VeryDarkBlue dark:text-white/90 ' key={index}>{item}</span>
                                </div>
-                               </Link>   
+                               </a>   
                         )                   
                     })
                      }
@@ -99,6 +99,7 @@ export default function Detail(){
             }
             {loanding && <Loader />}
             </div>
+            <Outlet />
         </div>
     )
 }

@@ -1,54 +1,20 @@
-import React,{useState,useEffect,useRef, useCallback} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {addItems} from './ContentForm/Features/itemsFilter';
-import axios from 'axios';
+import useFetchData from './Hooks/useFetchData';
+import useLastItemRef from './Hooks/useLastItemRef';
+import {useSelector} from 'react-redux';
 import Form from './Form';
 import Card from './Countries/Card';
 import Loader from './Loader';
-import {setLoader} from './ContentForm/Features/Loader';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
-const TotalData = 100;
-
 export default function App(){
-   const [posts, setPosts]= useState([]);
-   const [hasMore, setHasMore] = useState(true);
-   const observer = useRef();
-   const dispatch = useDispatch();
+   const lastItemRef = useLastItemRef();
+   const [posts]= useFetchData("all");
+ 
    let items = useSelector(state => state.items.value);
    let region = useSelector(state => state.API);
    let search = useSelector(state => state.search);   
    let check = useSelector(state => state.check);
    let isLoading = useSelector(state => state.loader.value);
-   
-   const lastItemRef = useCallback(
-      node=>{
-         if (isLoading) return;
-         if (observer.current) observer.current.disconnect();
-         observer.current = new IntersectionObserver(entries =>{
-            if(entries[0].isIntersecting && hasMore){
-               if(items < TotalData ){
-                  dispatch(addItems());
-               }else{
-                  setHasMore(false);
-               }
-            }
-         });
-         if(node) observer.current.observe(node);
-      },
-      [isLoading,hasMore]
-   ); 
-
-   const getData= async()=>{
-         dispatch(setLoader(true));
-      await axios.get("https://restcountries.com/v3.1/all").then((response)=>{
-         setPosts(response.data);
-         dispatch(setLoader(false));
-      }).catch((err)=>{console.log(err);})
-   };
-  useEffect(()=>{
-   getData();
- },[]);
 
 return (
 <div>
@@ -62,6 +28,7 @@ return (
                 <Card 
                 reference={lastItemRef} 
                 key={index} 
+                cca3={country.cca3}
                 text={'this'}
                 flags={country.flags.png}
                 name={country.name.common}
