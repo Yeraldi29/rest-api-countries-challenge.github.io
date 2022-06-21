@@ -1,28 +1,16 @@
 import React, {useState} from "react";
 import SelectOptions from "./ContentForm/SelectOptions";
 import SearchIcon from '@mui/icons-material/Search';
-import {setLoader} from './ContentForm/Features/Loader';
-import {itemsIndex} from './ContentForm/Features/itemsFilter';
-import {country} from './ContentForm/Features/SearchCountry';
-import {check} from './ContentForm/Features/CheckName';
-import axios from 'axios';
-import {useDispatch} from 'react-redux';
+import useSearchName from "../Hooks/useSearchName";
 
 export default function Form(){
     const [name, setName] = useState('');
-    const dispatch = useDispatch();
+    const setSearchName = useSearchName();
 
-    const handleSubmit = (event)=>{
-        dispatch(setLoader(true));
-        dispatch(check(200));
-        axios.get("https://restcountries.com/v3.1/name/"+name.toLowerCase()).then( (response)=>{
-          dispatch(country(response.data));
-          dispatch(itemsIndex());
-          dispatch(setLoader(false));
-        }).catch((err)=>{
-            dispatch(check(err.response.status));
-            console.log(err);}) 
-        event.preventDefault();
+    const handleSubmit = (e)=>{
+        setSearchName(name.toLowerCase());
+        setName('');
+        e.preventDefault();
     }
 
     return (

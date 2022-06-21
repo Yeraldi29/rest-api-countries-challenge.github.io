@@ -1,6 +1,6 @@
 import {useState,useCallback,useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {addItems} from '../ContentForm/Features/itemsFilter';
+import {addItems} from '../components/ContentForm/Features/itemsFilter';
 
 const TotalData = 100;
 
@@ -26,6 +26,7 @@ const useLastItemRef = () => {
               }
            });
            if(node) observer.current.observe(node);
+           // eslint-disable-next-line react-hooks/exhaustive-deps 
         },[isLoading,hasMore]
      ); 
      return lastItemRef

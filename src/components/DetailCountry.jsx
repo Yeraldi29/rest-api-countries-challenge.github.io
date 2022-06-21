@@ -1,29 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router';
-import axios from 'axios';
 import {Link, Outlet} from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Loader from './Loader';
+import useDatailData from '../Services/useDatailData';
 
 export default function Detail(){
-    const [detail, setDatail] = useState([]);
-    const [loanding, setLoanding] = useState(false);
-    let {detailTitle} = useParams();
-
-    const getData= async()=>{
-        setLoanding(true);
-     await axios.get("https://restcountries.com/v3.1/alpha/"+ detailTitle ).then((response)=>{
-        setDatail(response.data);
-        setLoanding(false);
-     }).catch((err)=>{console.log(err);})
-  };
-    useEffect(()=>{
-        getData();
-    },[]);
+    const [detail, isLoanding, err] = useDatailData();
 
     return (
-        <div className=' mt-10 px-8 text-sm mb-12 md:px-14 lg:px-16 lg:mt-16'>
+        <>
+            {
+                err === 404 ? (
+                    <div>
+                        hello
+                    </div>
+                ) : ( <div className=' mt-10 px-8 text-sm mb-12 md:px-14 lg:px-16 lg:mt-16'>
             <div className=' bg-white dark:bg-DarkBlue w-28 h-8  rounded-sm shadow-Custom cursor-pointer hover:opacity-50 '>
                 <Link to={{pathname: "/"}} className="flex items-center justify-center h-8" >
                 <KeyboardBackspaceIcon />
@@ -97,9 +88,12 @@ export default function Detail(){
                     )    
                 })
             }
-            {loanding && <Loader />}
+            {isLoanding && <Loader />}
             </div>
             <Outlet />
         </div>
+                )
+            }
+        </>
     )
 }

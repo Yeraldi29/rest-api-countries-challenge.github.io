@@ -1,10 +1,6 @@
-import {useContext, useEffect, useState} from 'react';
-import useFetchData from '../Hooks/useFetchData';
-import {useDispatch} from 'react-redux';
+import {useContext} from 'react';
+import useSelectRegion from '../../Hooks/useSelectRegion';
 import Select, {components} from 'react-select';
-import {Region} from './Features/FilterRegions';
-import {country} from './Features/SearchCountry';
-import {itemsIndex} from './Features/itemsFilter';
 import {ThemeContext} from '../ChangeTheme/ThemeContext';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import _ from 'lodash';
@@ -20,8 +16,8 @@ const options = [
 
 export default function SelectOptions(){
     const {theme} = useContext(ThemeContext);
-    const [posts, setKeyword] = useFetchData('region/');
-    
+    const setValue = useSelectRegion();
+
     const DropdownIndicator= (props)=>{
         return(
             <components.DropdownIndicator {...props}>
@@ -84,15 +80,9 @@ export default function SelectOptions(){
         })
     }
 
-    const dispatch = useDispatch();
-
-     function handleChange(e) { 
-        setKeyword(_.lowerFirst(e.value));
-        console.log(e.value);
-         dispatch(country([])); 
-         dispatch(Region(posts))
-         dispatch(itemsIndex());
-     }
+    function handleChange(e) { 
+       setValue(_.lowerFirst(e.value))
+    }
 
     return (
         <Select
