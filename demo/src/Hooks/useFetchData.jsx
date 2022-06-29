@@ -19,6 +19,7 @@ const useFetchData = (url) => {
       dispatch(setLoader(true));
       dispatch(country([])); 
       dispatch(itemsIndex());
+      console.log(url+keyword)
       await axios.get(url + keyword).then((response)=>{
          setPosts(response.data);
          setErr(response.status)

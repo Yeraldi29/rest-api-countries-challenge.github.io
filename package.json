@@ -6,7 +6,6 @@
   "version": "1.0.0",
   "description": "this is my rest countries app from frontendMentor",
   "main": "app.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
