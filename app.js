@@ -5,11 +5,11 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app
-.use(express.static(path.join(__dirname,'demo','build')))
-.get("/",(req,res) => {res.render(path.join(__dirname,'demo','build','index.html'))})
+.use(express.static(path.join(__dirname,'app','build')))
+.get("/",(req,res) => {res.render(path.join(__dirname,'app','build','index.html'))})
 
 app
-.use(express.static(path.join(__dirname,'demo','build')))
-.get("/country/*",(req,res) => {res.sendFile(path.join(__dirname,'demo','build','index.html'))})
+.use(express.static(path.join(__dirname,'app','build')))
+.get("/country/*",(req,res) => {res.sendFile(path.join(__dirname,'app','build','index.html'))})
 
 app.listen(PORT, console.log("Server started on PORT " + PORT));

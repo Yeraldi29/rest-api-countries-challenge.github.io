@@ -3,7 +3,7 @@ import useLastItemRef from '../Hooks/useLastItemRef';
 import Form from './Form';
 import Card from './Countries/Card';
 import Loader from './Loader';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import NotFound from './NotFound';
 
 export default function App(){
    const lastItemRef = useLastItemRef();
@@ -14,11 +14,7 @@ export default function App(){
       <Form />
       <main>
             {
-               check === 404 ? (
-                  <div className=' flex justify-center items-center h-96 px-14 dark:text-white/80'>
-                     <h1 className=' text-4xl '>ENTER THE CORRECT NAME.</h1>
-                     <ThumbDownIcon sx={{fontSize:64}} /> 
-                  </div>) : ( 
+               check === 404 || check === 500 ?  (  <NotFound />) : ( 
                   <div className=' grid px-16 mb-12 sm:grid-cols-2 sm:gap-8 md:gap-10 md:px-20 lg:grid-cols-3 lg:gap-14 xl:grid-cols-4 justify-center items-center w-full h-96'>
                  {data.slice(0,items).map((country, index) =>{
                  return (

@@ -12,7 +12,9 @@ module.exports = {
         DarkBlue: 'hsl(209, 23%, 22%)'
       },
       colors:{
-        VeryDarkBlue : 'hsl(200, 15%, 8%)'
+        VeryDarkBlueT : 'hsl(207, 26%, 17%)',
+        VeryDarkBlue : 'hsl(200, 15%, 8%)',
+        Verylightwhite: 'hsl(0, 0%, 98%)'
       },
       boxShadow:{
         Custom:"rgba(100, 100, 111, 0.2) 0px 0px 10px 0px"

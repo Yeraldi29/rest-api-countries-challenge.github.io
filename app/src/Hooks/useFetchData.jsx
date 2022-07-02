@@ -1,9 +1,10 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
-import { useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setLoader} from '../components/ContentForm/Features/Loader';
 import {country} from '../components/ContentForm/Features/SearchCountry';
 import {itemsIndex} from '../components/ContentForm/Features/itemsFilter';
+import {check} from '../components/ContentForm/Features/CheckName';
 
 axios.defaults.baseURL = "https://restcountries.com/v3.1/";
 
@@ -19,14 +20,15 @@ const useFetchData = (url) => {
       dispatch(setLoader(true));
       dispatch(country([])); 
       dispatch(itemsIndex());
-      console.log(url+keyword)
       await axios.get(url + keyword).then((response)=>{
          setPosts(response.data);
          setErr(response.status)
+         dispatch(check(err));
          dispatch(setLoader(false));
       })
      }catch(error){
       setErr(error.response.status);
+      dispatch(check(err));
     }
    };
    if(!url || url + keyword === "region/"  || url + keyword === "name/" || url + keyword === "alpha/") return;

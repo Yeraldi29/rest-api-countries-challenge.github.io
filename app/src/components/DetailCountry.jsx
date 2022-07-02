@@ -5,27 +5,21 @@ import Loader from './Loader';
 import useDatailData from '../Services/useDatailData';
 
 export default function Detail(){
-    const [detail, isLoanding, err] = useDatailData();
+    const [detail, isLoanding] = useDatailData();
 
     return (
-        <>
-            {
-                err === 404 ? (
-                    <div>
-                        hello
-                    </div>
-                ) : ( <div className=' mt-10 px-8 text-sm mb-12 md:px-14 lg:px-16 lg:mt-16'>
+       <div className=' mt-10 px-8 text-sm mb-12 md:px-14 lg:px-16 lg:mt-16'>
             <div className=' bg-white dark:bg-DarkBlue w-28 h-8  rounded-sm shadow-Custom cursor-pointer hover:opacity-50 '>
                 <Link to={{pathname: "/"}} className="flex items-center justify-center h-8" >
                 <KeyboardBackspaceIcon />
                 <p className=' pl-2'>Back</p>
                 </Link>
             </div>
-            <div className=' flex items-center h-96'>  
+            <div className=' lg:flex lg:items-center h-96'>  
             {
                 detail.map((country, index) => {
                     return (
-                     <div key={index} className=" lg:flex lg:items-center ">
+                     <div key={index} className="  lg:flex lg:items-center ">
                      <img className=' w-full h-64 my-14 sm:h-[22rem] lg:h-72 lg:w-96 shadow-Custom' src={country.flags.png} alt="flag-img" />
                      <div className=' lg:ml-8 xl:ml-32'>
                      <h1 className=' text-xl font-bold pb-4'>{country.name.common}</h1>
@@ -69,15 +63,17 @@ export default function Detail(){
                      </div>
                      <div className=''>
                      <h3 className=' text-base '>Border Countries: </h3>
-                    <div className=' flex  mt-6 '>
+                    <div className=' grid grid-cols-3 sm:grid-cols-5  lg:grid-cols-4 gap-2 mt-6 pb-6'>
                     {
                     country.borders !== undefined && country.borders.map((item, index) =>{
                         return(
                             <a href={"/country/"+item} >
-                               <div className="flex bg-white dark:bg-DarkBlue mr-2 w-28 h-6 items-center justify-center rounded-sm shadow-Custom cursor-pointer hover:opacity-50 sm:w-24 " key={index} >
-                                   <span className=' text-xs font-light text-VeryDarkBlue dark:text-white/90 ' key={index}>{item}</span>
-                               </div>
-                               </a>   
+                                <div className="flex bg-white dark:bg-DarkBlue w-24 lg:w-28 h-6 items-center justify-center rounded-sm shadow-Custom cursor-pointer hover:opacity-50" key={index} >
+                                <span className=' text-xs font-light text-VeryDarkBlue dark:text-white/90 ' key={index}>
+                                    {item}
+                                </span>
+                                </div>
+                            </a>   
                         )                   
                     })
                      }
@@ -88,12 +84,11 @@ export default function Detail(){
                     )    
                 })
             }
-            {isLoanding && <Loader />}
+            <div className="flex items-center mx-auto">
+              {isLoanding && <Loader />}
+            </div>  
             </div>
             <Outlet />
         </div>
-                )
-            }
-        </>
     )
 }
