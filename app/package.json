@@ -2,7 +2,6 @@
   "name": "react-folder",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:8080",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -13,16 +12,18 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.1",
+    "env": "^0.0.2",
     "lodash": "^4.17.21",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-number-format": "^4.9.3",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.3.0",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://rest-countries-api-production.up.railway.app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@webpack-cli/generators": "^0.1.9",
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.24",

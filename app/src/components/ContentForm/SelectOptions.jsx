@@ -29,7 +29,7 @@ export default function SelectOptions(){
     const customStyles = {
         option: (provided)=>({
             ...provided,
-            color:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)',
+            color:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)',
             paddingLeft:'1.6rem',
             "&:hover":{
                 cursor:'pointer',
@@ -37,11 +37,11 @@ export default function SelectOptions(){
         }),
         noOptionsMessage:(provided)=>({
             ...provided,
-            color:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)'
+            color:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)'
         }),
         control: (provided, state)=>({
             ...provided,
-            border: theme === 'light' ? (state.isFocused ? "none" : "none") :(state.isFocused ? "1px solid hsl(207, 26%, 17%)" : "1px solid hsl(207, 26%, 17%)"),
+            border: theme === 'dark' ? (state.isFocused ? "1px solid hsl(207, 26%, 17%)" : "1px solid hsl(207, 26%, 17%)") :(state.isFocused ? "none" : "none"),
 
             boxShadow: "rgba(100, 100, 111, 0.2) 0px 0px 10px 0px",
             height:'50px',
@@ -62,7 +62,7 @@ export default function SelectOptions(){
         }),
         singleValue:(provided)=>({
             ...provided,
-            color:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)',
+            color:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)',
             fontWeight: '600'
         }),
         menu:(provided)=>({
@@ -71,12 +71,12 @@ export default function SelectOptions(){
         }),
         placeholder:(provided)=>({
             ...provided,
-            color:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)',
+            color:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)',
         }),
         input:(provided)=>({
             ...provided,
-            color:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)',
-            caretColor:theme === 'light' ? 'hsl(200, 15%, 8%)' : 'rgb(255 255 255 / 0.8)'
+            color:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)',
+            caretColor:theme === 'dark' ? 'rgb(255 255 255 / 0.8)' : 'hsl(200, 15%, 8%)'
         })
     }
 
@@ -100,7 +100,7 @@ export default function SelectOptions(){
                 primary25:'',
                 primary50:'',
                 primary75:'',
-                neutral0: theme === 'light' ? 'white' : 'hsl(209, 23%, 22%)'
+                neutral0: theme === 'dark' ? 'hsl(209, 23%, 22%)' : 'white'
             }
         })}    
         />
