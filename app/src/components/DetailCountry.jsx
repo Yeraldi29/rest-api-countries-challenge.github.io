@@ -34,7 +34,7 @@ export default function Detail(){
                             )
                          })} 
                          </li>
-                         <li className=" pb-3" >Population: <span className=' font-light text-white/90'><NumberFormat value={country.population} display={'text'} thousandSeparator={true} displayType={'text'} /></span> </li>
+                         <li className=" pb-3" >Population:  <span className=' font-light dark:text-white/90'><NumberFormat value={country.population} display={'text'} thousandSeparator={true} displayType={'text'} /></span> </li>
                          <li className=" pb-3" >Region: <span className=' font-light text-VeryDarkBlue dark:text-white/90'>{country.region}</span> </li>
                          <li className=" pb-3" >Sub Region: <span className=' font-light text-VeryDarkBlue dark:text-white/90'>{country.subregion}</span> </li>
                          <li className=" pb-3" >Capital: <span className=' font-light text-VeryDarkBlue dark:text-white/90'>{country.capital}</span></li>
