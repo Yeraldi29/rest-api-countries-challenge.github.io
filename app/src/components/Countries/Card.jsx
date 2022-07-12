@@ -9,7 +9,7 @@ export default function Card(props){
     let detailTitle = props.cca3;
         return(
         <Link to={"country/"+detailTitle}>
-        <div className=' mt-10 shadow-Custom rounded-md cursor-pointer  bg-white dark:bg-DarkBlue  hover:border-4 hover:border-Verylightwhite hover:dark:border-VeryDarkBlueT' ref={props.reference} >
+        <div className=' mt-10 shadow-Custom rounded-md cursor-pointer  bg-white dark:bg-DarkBlue  hover:border-4 hover:border-Verylightwhite hover:dark:border-DarkBlue' ref={props.reference} >
             <div className=' h-48 w-full rounded-t shadow-md justify-center flex items-center sm:h-52 '>
             {
                 isLoading ? <Loader />
